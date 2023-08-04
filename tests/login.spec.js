@@ -8,7 +8,8 @@ test('has title', async ({ page }) => {
   await expect(page).toHaveTitle(/BurgerShop/);
 });
 
-// Test - Login functionality
+// Test - Login with correct credentials
+
 test('login functionality', async ({ page }) => {
   // Go to the page containing the Login component
   await page.goto('https://burgershop-fredriktvingstedt.vercel.app/');
@@ -17,7 +18,7 @@ test('login functionality', async ({ page }) => {
   const loginTab = await page.locator('.active-tab');
   if (loginTab.textContent() !== 'Login') {
     await page.click('text=Login');
-    await page.waitForTimeout(1000); // Add a short delay to allow the form to show (optional)
+    await page.waitForTimeout(1000); // Add a short delay to allow the form to show 
   }
 
   // Fill in the login form with the username and password
@@ -27,7 +28,7 @@ test('login functionality', async ({ page }) => {
   // Click the "Sign in" button to perform the login
   await page.click('text=Sign in');
 
-  // Wait for a little while to allow the login logic to complete (optional)
+  // Wait for a little while to allow the login logic to complete
   await page.waitForTimeout(1000);
 
   // Check if the user is authenticated after login
