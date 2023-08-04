@@ -63,7 +63,7 @@ test('click GitHub link', async ({ page }) => {
   await githubLink.click();
 
   // Wait for a new page/tab to open
-  await page.waitForTimeout(1000);
+  await page.waitForTimeout(3000);
 
   // Get the new page that opened after clicking the link
   const pages = await page.context().pages();

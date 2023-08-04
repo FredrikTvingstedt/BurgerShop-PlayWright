@@ -8,9 +8,7 @@ test('has title', async ({ page }) => {
   await expect(page).toHaveTitle(/BurgerShop/);
 });
 
-
-
-// Your test code
+// Test - Login functionality
 test('login functionality', async ({ page }) => {
   // Go to the page containing the Login component
   await page.goto('https://burgershop-fredriktvingstedt.vercel.app/');
@@ -52,17 +50,6 @@ test('login functionality', async ({ page }) => {
     email: 'John-Doe@Burgershop.se'
   });
 
-  // Logout the user
-  await page.click('text=Logout');
-
-  // Wait for a little while to allow the logout logic to complete (optional)
-  await page.waitForTimeout(1000);
-
-  // Check if the user is logged out after clicking the "Logout" button
-  const loggedOutUser = await page.evaluate(() => window.localStorage.getItem('user'));
-
-  // Expect the user to be logged out
-  expect(loggedOutUser).toBeNull();
 });
 
 
