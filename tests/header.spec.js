@@ -111,53 +111,47 @@ test.describe('Dropdown Menu', () => {
   });
 
   test('Menu link should navigate to the correct page', async ({ page }) => {
-    // Click on the "Menu" link in the dropdown menu
-    await page.click('text=Menu');
-  
-    // Wait for the expected URL to be reached
-    await page.waitForURL('https://burgershop-fredriktvingstedt.vercel.app/menu');
-  
-    // Now that we are sure the navigation is complete, check the URL
-    expect(page.url()).toBe('https://burgershop-fredriktvingstedt.vercel.app/menu');
+    // Click on the "Burger Menu" link in the dropdown menu
+    await page.locator('[class="dropdown-item"]').getByText("Menu").click();
+    // Expect the URL to contain the correct path
+    await expect(page).toHaveURL('https://burgershop-fredriktvingstedt.vercel.app/menu')
   });
+
   
   test('Orders link should navigate to the correct page', async ({ page }) => {
-    // Click on the "Home" link in the dropdown menu
+    // Click on the "Orders" link in the dropdown menu
     await page.click('text=Orders');
     // Expect the URL to contain the correct path
     await expect(page).toHaveURL('https://burgershop-fredriktvingstedt.vercel.app/myorders')
   });
 
   test('About link should navigate to the correct page', async ({ page }) => {
-    // Click on the "Home" link in the dropdown menu
+    // Click on the "About" link in the dropdown menu
     await page.click('text=About');
     // Expect the URL to contain the correct path
     await expect(page).toHaveURL('https://burgershop-fredriktvingstedt.vercel.app/about')
   });
 
   test('Contact link should navigate to the correct page', async ({ page }) => {
-    // Click on the "Home" link in the dropdown menu
+    // Click on the "Contact" link in the dropdown menu
     await page.click('text=Contact');
     // Expect the URL to contain the correct path
     await expect(page).toHaveURL('https://burgershop-fredriktvingstedt.vercel.app/contact')
   });
 
   test('My Account link should navigate to the correct page', async ({ page }) => {
-    // Click on the "Home" link in the dropdown menu
+    // Click on the "My Account" link in the dropdown menu
     await page.click('text=My Account');
     // Expect the URL to contain the correct path
     await expect(page).toHaveURL('https://burgershop-fredriktvingstedt.vercel.app/me')
   });
 
   test('Logout link should navigate to the correct page', async ({ page }) => {
-    // Click on the "Home" link in the dropdown menu
+    // Click on the "Logout" link in the dropdown menu
     await page.click('text=Logout');
     // Expect the URL to contain the correct path
     await expect(page).toHaveURL('https://burgershop-fredriktvingstedt.vercel.app/')
   });
-
-
-
 });
 
 test('About, Contact, and Login buttons should not be visible', async ({ page }) => {
