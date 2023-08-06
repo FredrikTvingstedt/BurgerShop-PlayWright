@@ -32,30 +32,58 @@ test('login link', async ({ page }) => {
 
 // Test - If the user is logged in
 
-test('Cart and dropdown menu should be visible', async ({ page }) => {
+test('Cart should be visible', async ({ page }) => {
   // Go to the page containing the Login component
   await page.goto('https://burgershop-fredriktvingstedt.vercel.app/');
   // Click the Login tab to show the login form
   const loginTab = await page.locator('.active-tab');
   if (loginTab.textContent() !== 'Login') {
     await page.click('text=Login');
-    await page.waitForTimeout(1000); // Add a short delay to allow the form to show 
+    await page.waitForTimeout(1000); 
   }
   // Fill in the login form with the username and password
   await page.fill('#form1', 'Guest');
   await page.fill('#form2', 'Password');
   // Click the "Sign in" button to perform the login
   await page.click('text=Sign in');
-  // Wait for a little while to allow the login logic to complete
   await page.waitForTimeout(1000);
-  // Check if the cart and dropdown menu are visible
-  const cartButton = await page.locator('text=Cart');
-  const dropdownButton = await page.locator('text=Dropdown');
+  
+  const cartButton = await page.locator('.cart-button');
   await expect(cartButton).toBeVisible();
-  await expect(dropdownButton).toBeVisible();
+  await cartButton.click();
+
+  // Check if the cart itself is visible
+  const cartButton = await page.locator('.cart-button');
+  await expect(ButtonMenu).toBeVisible();
 });
 
-// Test - If the user is logged in
+test('Dropdown menu should be visible', async ({ page }) => {
+  // Go to the page containing the Login component
+  await page.goto('https://burgershop-fredriktvingstedt.vercel.app/');
+  // Click the Login tab to show the login form
+  const loginTab = await page.locator('.active-tab');
+  if (loginTab.textContent() !== 'Login') {
+    await page.click('text=Login');
+    await page.waitForTimeout(1000);
+  }
+  // Fill in the login form with the username and password
+  await page.fill('#form1', 'Guest');
+  await page.fill('#form2', 'Password');
+  // Click the "Sign in" button to perform the login
+  await page.click('text=Sign in');
+  await page.waitForTimeout(1000);
+  
+  const dropdownToggle = await page.locator('.dropdown-toggle');
+  await expect(dropdownToggle).toBeVisible();
+  await dropdownToggle.click();
+
+  // Check if the dropdown menu itself is visible
+  const dropdownMenu = await page.locator('.dropdown-menu');
+  await expect(dropdownMenu).toBeVisible();
+});
+
+
+
 
 test('About, Contact, and Login buttons should not be visible', async ({ page }) => {
   // Go to the page containing the Login component
@@ -64,7 +92,7 @@ test('About, Contact, and Login buttons should not be visible', async ({ page })
   const loginTab = await page.locator('.active-tab');
   if (loginTab.textContent() !== 'Login') {
     await page.click('text=Login');
-    await page.waitForTimeout(1000); // Add a short delay to allow the form to show 
+    await page.waitForTimeout(1000);
   }
   // Fill in the login form with the username and password
   await page.fill('#form1', 'Guest');
