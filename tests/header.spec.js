@@ -82,7 +82,6 @@ test('Dropdown menu should be visible', async ({ page }) => {
   expect(isDropdownMenuVisible).toBe(true);
 });
 
-
 test.describe('Dropdown Menu', () => {
   test.beforeEach(async ({ page }) => {
     // Go to the page containing the DropdownMenu component
@@ -122,10 +121,6 @@ test.describe('Dropdown Menu', () => {
     expect(page.url()).toBe('https://burgershop-fredriktvingstedt.vercel.app/menu');
   });
   
-  
-  
-  
-
   test('Orders link should navigate to the correct page', async ({ page }) => {
     // Click on the "Home" link in the dropdown menu
     await page.click('text=Orders');
