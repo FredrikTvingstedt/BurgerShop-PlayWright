@@ -51,10 +51,6 @@ test('Cart should be visible', async ({ page }) => {
   const cartButton = await page.locator('.cart-button');
   await expect(cartButton).toBeVisible();
   await cartButton.click();
-
-  // Check if the cart itself is visible
-  const cartButton = await page.locator('.cart-button');
-  await expect(ButtonMenu).toBeVisible();
 });
 
 test('Dropdown menu should be visible', async ({ page }) => {
@@ -82,9 +78,6 @@ test('Dropdown menu should be visible', async ({ page }) => {
   await expect(dropdownMenu).toBeVisible();
 });
 
-
-
-
 test('About, Contact, and Login buttons should not be visible', async ({ page }) => {
   // Go to the page containing the Login component
   await page.goto('https://burgershop-fredriktvingstedt.vercel.app/');
@@ -99,8 +92,8 @@ test('About, Contact, and Login buttons should not be visible', async ({ page })
   await page.fill('#form2', 'Password');
   // Click the "Sign in" button to perform the login
   await page.click('text=Sign in');
-  // Wait for a little while to allow the login logic to complete
   await page.waitForTimeout(1000);
+
   // Check if the About, Contact, and Login buttons are NOT visible
   const aboutButton = await page.locator('text=About');
   const contactButton = await page.locator('text=Contact');
