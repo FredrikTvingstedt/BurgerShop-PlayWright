@@ -99,7 +99,6 @@ test.describe('Dropdown Menu', () => {
     // Click the "Sign in" button to perform the login
     await page.click('text=Sign in');
     await page.waitForTimeout(1000);
-
     // Find the dropdown menu button and click it
     const dropdownToggle = await page.locator('.dropdown-toggle');
     await dropdownToggle.click();
@@ -113,11 +112,19 @@ test.describe('Dropdown Menu', () => {
   });
 
   test('Menu link should navigate to the correct page', async ({ page }) => {
-    // Click on the "Home" link in the dropdown menu
+    // Click on the "Menu" link in the dropdown menu
     await page.click('text=Menu');
-    // Expect the URL to contain the correct path
-    await expect(page).toHaveURL('https://burgershop-fredriktvingstedt.vercel.app/menu')
+  
+    // Wait for the expected URL to be reached
+    await page.waitForURL('https://burgershop-fredriktvingstedt.vercel.app/menu');
+  
+    // Now that we are sure the navigation is complete, check the URL
+    expect(page.url()).toBe('https://burgershop-fredriktvingstedt.vercel.app/menu');
   });
+  
+  
+  
+  
 
   test('Orders link should navigate to the correct page', async ({ page }) => {
     // Click on the "Home" link in the dropdown menu
